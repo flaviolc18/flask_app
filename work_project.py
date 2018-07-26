@@ -1,9 +1,9 @@
-from flask import Flask
+import flask
 
-app = Flask("work_project")
+app = flask.Flask("work_project")
 
 @app.route('/')
 def index():
-  return "it works!", 200
+  return flask.render_template("index.html", name="test user")
 
 app.run(debug=True, use_reloader=True)

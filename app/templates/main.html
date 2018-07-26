@@ -16,4 +16,15 @@
    <br />
    <input type="submit" value="Search" />
   </form>
+
+  {% if search %}
+    <a href="{{ url_for('newad') }}">Create a new ad</a>
+
+    <ul>
+      {% for ad in ads %}
+      <li> Service: {{ad.serv}} Company: {{ad.comp}} </li>
+    </ul>
+    
+  {% endif %}
+  
 {% endblock %}

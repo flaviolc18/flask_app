@@ -1,4 +1,7 @@
-from work_tool import app
+from app import create_app
+from settings import PROJECT_ROOT
 
-app.run(host='0.0.0.0', port=8080, debug=True)
+app = create_app(PROJECT_ROOT + "/settings.py")
+
+app.run(debug=True, use_reloader=True)
 

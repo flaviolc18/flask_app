@@ -1,7 +1,8 @@
+import sys
 from app import create_app
-from settings import PROJECT_ROOT
 
-app = create_app(PROJECT_ROOT + "/settings.py")
+mode = sys.argv[1] if len(sys.argv) > 1 else "development"
+app = create_app(mode=mode)
 
 app.run(debug=True, use_reloader=True)
 

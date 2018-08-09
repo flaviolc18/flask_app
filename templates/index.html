@@ -1,7 +1,14 @@
 {% extends "base.html"%}
 {% block content %}
   
-  <h2>Welcome</h2>
   <a href="{{ url_for('ads.create') }}">New batch</a>
+
+  <h4>All ads {{ads}}</h4>
+
+  <ul>
+  {% for ad in ads %}
+    <li><a href="#">{{ ad['comp'] }} - {{ ad['serv'] }}</a></li>
+  {% endfor %}
+  </ul>
 
 {% endblock %}

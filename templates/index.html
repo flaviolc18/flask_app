@@ -1,28 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class=flashes>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
   
-  <a href="{{ url_for('ads.new') }}">New batch</a>
+  <h3>WorkTool v1.0</h3> 
+  <h4>Welcome to the funny time of work!</h4>
 
-  <h4>All ads</h4>
-
-  {% for ad in all_ads %}
-    <ul>
-      <h4>Company: {{ ad.company }}</h4>
-      <li>Service: {{ ad.service }}</li>
-      <li>Offensive: {{ ad.offensive }}</li>
-      <li>Misleading: {{ ad.misleading }}</li>
-      <li>Inappropriate: {{ ad.inappropriate }}</li>
-    </ul>
-  {%endfor%}
+  <form method="POST" action="{{ url_for('ads.handler') }}">
+    <select name="num_ads" id="num_ads">
+      {% for i in range(20) %}
+        {% if i+1 == 20 %}
+          <option value="{{i+1}}" selected="selected">{{i+1}}</option>
+        {% else %}
+          <option value="{{i+1}}">{{i+1}}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    <input type="submit" value="New batch"></a>
+  </form>
+  
 
 {% endblock %}

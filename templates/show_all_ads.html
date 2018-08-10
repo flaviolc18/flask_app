@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block content %}
+
+  <h4>All ads</h4>
+
+  {% for ad in all_ads %}
+    <ul>
+      <h4>Company: {{ ad.company }}</h4>
+      <li>Service: {{ ad.service }}</li>
+      <li>Offensive: {{ ad.offensive }}</li>
+      <li>Misleading: {{ ad.misleading }}</li>
+      <li>Inappropriate: {{ ad.inappropriate }}</li>
+    </ul>
+  {%endfor%}
+
+  {% if error_msg %}
+    <p>{{ error_msg }}</p>
+  {% endif %}
+{% endblock %}

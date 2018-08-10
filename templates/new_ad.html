@@ -10,12 +10,14 @@
     <label for="subj">Subject</label><br>
     <input name="subj" id="subj"><br>
     <label for="offen">Offensive</label><br>
-    <input name="offen" id="ofens"><br>
+    <input name="offen" id="offen"><br>
     <label for="misl">Misleading</label><br>
     <input name="misl" id="misl"><br>
     <label for="inap">Inappropriate</label><br>
     <input name="inap" id="inap"><br>
     <input type="submit" value="Create" />
   </form>
+
+  <a href="{{url_for('ads.show_all')}}">See all</a>
   
 {% endblock %}

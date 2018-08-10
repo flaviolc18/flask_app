@@ -1,4 +1,4 @@
-from flask import (Blueprint, render_template, request, flash, redirect, url_for, make_response, session)
+from flask import (Blueprint, render_template, request, flash, redirect, url_for, make_response, session, jsonify)
 from db import db
 from blueprints.ads_model import Ad, Rate
 
@@ -31,11 +31,14 @@ def new():
 
 @ads_blueprint.route("/ads/show_all")
 def show_all():
-  all_ads = Ad.query.all()
-  if all_ads:
-    return render_template('show_all_ads.html', all_ads=all_ads)
+  if(request.args.get('option') == "get_ads"):
+    return jsonify(test="test123")
   else:
-    return render_template('show_all_ads.html', error_msg="No ads to show...")
+    all_ads = Ad.query.all()
+    if all_ads:
+      return render_template('show_all_ads.html', all_ads=all_ads)
+    else:
+      return render_template('show_all_ads.html', error_msg="No ads to show...")
 
 @ads_blueprint.route("/ads", methods=["POST"])
 def handler():

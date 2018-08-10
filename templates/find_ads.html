@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h2>test</h2>
+  <form id="form_search_ads" method="POST" action="" enctype="multipart/form-data">
 
-  <p>your num ads is: {{session['num_ads']}}</p>
+    <label for="comp">Company</label><br>
+    <input name="comp" id="comp"><br>
+    <label for="serv">Service</label><br>
+    <input name="serv" id="serv"><br>
+    <label for="key">Key Word</label><br>
+    <input name="key" id="key"><br>
+    <input type="submit" value="Search" />
+  </form>
 
 {% endblock %}

@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>{% block title %} {{title or "Work App v1.0"}} {% endblock %}</title>
+  <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+  <script type=text/javascript src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
 <body>
   {% block content %}
@@ -9,5 +11,6 @@
     <!-- include pages -->
 
   {% endblock %}
+
 </body>
 </html>

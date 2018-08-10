@@ -4,7 +4,7 @@
   <h3>WorkTool v1.0</h3> 
   <h4>Welcome to the funny time of work!</h4>
 
-  <form method="POST" action="{{ url_for('ads.handler') }}">
+  <form id="form_num_ads" method="POST" action="{{ url_for('ads.handler') }}">
     <select name="num_ads" id="num_ads">
       {% for i in range(20) %}
         {% if i+1 == 20 %}
@@ -14,8 +14,7 @@
         {% endif %}
       {% endfor %}
     </select>
-    <input type="submit" value="New batch"></a>
+    <input type="submit" value="New batch">
   </form>
-  
 
 {% endblock %}

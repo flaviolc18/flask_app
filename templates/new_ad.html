@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <form method="POST" action="" enctype="multipart/form-data">
+
+    <label for="comp">Company</label><br>
+    <input name="comp" id="comp"><br>
+    <label for="serv">Service</label><br>
+    <input name="serv" id="serv"><br>
+    <label for="subj">Subject</label><br>
+    <input name="subj" id="subj"><br>
+    <label for="offen">Offensive</label><br>
+    <input name="offen" id="ofens"><br>
+    <label for="misl">Misleading</label><br>
+    <input name="misl" id="misl"><br>
+    <label for="inap">Inappropriate</label><br>
+    <input name="inap" id="inap"><br>
+    <input type="submit" value="Create" />
+  </form>
+  
+{% endblock %}

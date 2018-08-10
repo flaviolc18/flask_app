@@ -5,6 +5,14 @@ from blueprints.ads_model import Ad, Rate
 #create a blueprint
 ads_blueprint = Blueprint('ads', __name__, template_folder='templates')
 
+@ads_blueprint.route("/ads", methods=["POST"])
+def handler():
+  if(request.method == "POST"):
+
+    if(request.form['num_ads']):
+      session['num_ads'] = request.form['num_ads']
+
+    return render_template('find_ads.html')
 
 @ads_blueprint.route("/ads/new", methods=["GET", "POST"])
 def new():
@@ -45,14 +53,12 @@ def show_all():
 
       return render_template('show_all_ads.html', error_msg="No ads to show...")
 
-@ads_blueprint.route("/ads", methods=["POST"])
-def handler():
+@ads_blueprint.route("/ads/show_ad", methods=["GET", "POST"])
+def show_ad():
   if(request.method == "POST"):
-
-    if(request.form['num_ads']):
-      session['num_ads'] = request.form['num_ads']
-
-    return render_template('find_ads.html')
+    return render_template("show_ad.html", id_ad_selected=request.form['ad_id'])
+  else:
+    return render_template("show_ad.html")
 
 @ads_blueprint.route("/")
 def index():

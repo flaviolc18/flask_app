@@ -25,7 +25,7 @@ $(function(){
                   html += "<td>"+ key2 +":"+ data[i][key][key2] +"</td>";
                 });
               }else{
-                
+
                 html += "<td>"+ key +":"+ data[i][key] +"</td>";
               }
             });
@@ -34,6 +34,7 @@ $(function(){
         }
 
         html += "</table>";
+        if(data.length > 0){html += '<input type="submit" value="Select Ad">';}
 
         $("div.div-search-content").html(html);
       }
@@ -42,4 +43,5 @@ $(function(){
     e.preventDefault();
     
   });
+  
 });

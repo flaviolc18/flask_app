@@ -7,9 +7,10 @@
     <ul>
       <h4>Company: {{ ad.company }}</h4>
       <li>Service: {{ ad.service }}</li>
-      <li>Offensive: {{ ad.offensive }}</li>
-      <li>Misleading: {{ ad.misleading }}</li>
-      <li>Inappropriate: {{ ad.inappropriate }}</li>
+      <li>Offensive: {{ ad.rate.offensive }}</li>
+      <li>Misleading: {{ ad.rate.misleading }}</li>
+      <li>Inappropriate: {{ ad.rate.inappropriate }}</li>
+      <li>Comment: {{ ad.rate.comment }}</li>
     </ul>
   {%endfor%}
 

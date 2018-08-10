@@ -13,7 +13,7 @@ def new():
     data = request.form.to_dict()
 
     #create the models
-    rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'])
+    rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'], comment=data['comment'])
     ad = Ad(company=data['comp'], service=data['serv'], subject=data['subj'])
     
     #set the relationship
@@ -32,12 +32,17 @@ def new():
 @ads_blueprint.route("/ads/show_all")
 def show_all():
   if(request.args.get('option') == "get_ads"):
-    return jsonify(test="test123")
+
+    all_ads = Ad.query.filter(Ad.company.like("%"+request.args.get('comp')+"%"), Ad.service.like("%"+request.args.get('serv')+"%"), Rate.comment.like("%"+request.args.get('key')+"%")).all()
+    return jsonify([a.serialize() for a in all_ads])
   else:
+
     all_ads = Ad.query.all()
     if all_ads:
+
       return render_template('show_all_ads.html', all_ads=all_ads)
     else:
+
       return render_template('show_all_ads.html', error_msg="No ads to show...")
 
 @ads_blueprint.route("/ads", methods=["POST"])

@@ -1,13 +1,13 @@
 import telepot
 
 class Bot:
-  _bot = None
-  _chat_id = None
+  bot = None
+  chat_id = None
 
-  __init__(self):
-  self.bot = telepot.Bot("647490139:AAGHiZzb06ZjbYnnmwJrslBRm1B_MrrUhXc")
+  def __init__(self):
+    self.bot = telepot.Bot("647490139:AAGHiZzb06ZjbYnnmwJrslBRm1B_MrrUhXc")
   
-  def get_ready(chat_id=None):
+  def get_ready(self, chat_id=None):
     if chat_id:
       self.chat_id = chat_id
       return True

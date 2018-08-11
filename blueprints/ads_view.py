@@ -1,6 +1,7 @@
 from flask import (Blueprint, render_template, request, flash, redirect, url_for, make_response, session, jsonify)
 from db import db
 from blueprints.ads_model import Ad, Rate
+from bot.bot import Bot
 
 #create a blueprint
 ads_blueprint = Blueprint('ads', __name__, template_folder='templates')
@@ -53,10 +54,20 @@ def show_all():
 
       return render_template('show_all_ads.html', error_msg="No ads to show...")
 
-@ads_blueprint.route("/ads/show_ad", methods=["GET", "POST"])
-def show_ad():
-  if(request.method == "POST"):
-    return render_template("show_ad.html", id_ad_selected=request.form['ad_id'])
+@ads_blueprint.route("/ads/show")
+def show():
+  if("ad_id" in request.args):
+
+    ad = Ad.query.filter_by(id=request.args['ad_id']).first()
+
+    bot = Bot()
+    if(bot.get_ready()):
+      bot.send_msg(ad.rate.comment)
+      flash("Message sent successfully!")
+    else:
+      flash("Fail send message, start the bot in the Telegram chat...")
+
+    return render_template("show_ad.html", id_ad_selected=request.args['ad_id'])
   else:
     return render_template("show_ad.html")
 

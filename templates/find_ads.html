@@ -16,7 +16,7 @@
   <a href="{{ url_for('ads.new') }}">New Ad</a>
 
   <div class="select_ad">
-    <form id="form_select_ads" method="POST" action="{{url_for('ads.show_ad')}}" enctype="multipart/form-data">
+    <form id="form_select_ads" method="GET" action="{{url_for('ads.show')}}" enctype="multipart/form-data">
       <div class="div-search-content">
 
         <!--assync request content-->

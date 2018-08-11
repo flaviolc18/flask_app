@@ -3,25 +3,41 @@
 
   <form method="POST" action="" enctype="multipart/form-data">
 
-    <label for="comp">Company</label><br>
-    <input name="comp" id="comp"><br>
-    <label for="serv">Service</label><br>
-    <input name="serv" id="serv"><br>
-    <label for="subj">Subject</label><br>
-    <input name="subj" id="subj"><br>
-    <label for="offen">Offensive</label><br>
-    <input name="offen" id="offen"><br>
-    <label for="misl">Misleading</label><br>
-    <input name="misl" id="misl"><br>
-    <label for="inap">Inappropriate</label><br>
-    <input name="inap" id="inap"><br>
-    <label for="comment">Comment</label><br>
-    <input name="comment" id="comment"><br>
+    <div >
+      <label for="comp">Company</label><br>
+      <input name="comp" id="comp" value="{{ session['comp'] }}"><br>
 
+      <label for="serv">Service</label><br>
+      <input name="serv" id="serv" value="{{ session['serv'] }}"><br>
+    </div>
+    <div>
+      <div>
+        <label for="offen">Offensive</label><br>
+        <input name="offen" id="offen"><br>
+      </div>
+      <div>
+        <label for="misl">Misleading</label><br>
+        <input name="misl" id="misl"><br>
+      </div>
+      <div>
+        <label for="inap">Inappropriate</label><br>
+        <input name="inap" id="inap"><br>
+      </div>
+    </div>
+    <div>
+      <label for="subj">Subject</label><br>
+      <input name="subj" id="subj"><br>
+      <label for="comment">Comment</label><br>
+      <input name="comment" id="comment"><br>
+    </div>
+
+    <div>
+      <!-- ad preview with translation -->
+    </div>
 
     <input type="submit" value="Create" />
   </form>
 
-  <a href="{{url_for('ads.show_all')}}">See all</a>
+  <a href="{{url_for('ads.next')}}">Next</a>
   
 {% endblock %}

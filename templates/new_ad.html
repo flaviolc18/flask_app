@@ -13,22 +13,38 @@
     <div>
       <div>
         <label for="offen">Offensive</label><br>
-        <input name="offen" id="offen"><br>
+        {% for key in threeRate %}
+          <input type="radio" name="offen" id="offen" value="{{key}}">{{threeRate[key].title()}}<br>
+        {% endfor %}
       </div>
       <div>
         <label for="misl">Misleading</label><br>
-        <input name="misl" id="misl"><br>
+        {% for key in threeRate %}
+          <input type="radio" name="misl" id="misl" value="{{key}}">{{threeRate[key].title()}}<br>
+        {% endfor %}
       </div>
       <div>
         <label for="inap">Inappropriate</label><br>
-        <input name="inap" id="inap"><br>
+        {% for key in threeRate %}
+          <input type="radio" name="inap" id="inap" value="{{key}}">{{threeRate[key].title()}}<br>
+        {% endfor %}
+      </div>
+      <div>
+        <label for="over">Overall</label><br>
+        {% for key in fiveRate %}
+          <input type="radio" name="over" id="over" value="{{key}}">{{fiveRate[key].title()}}<br>
+        {% endfor %}
       </div>
     </div>
     <div>
-      <label for="subj">Subject</label><br>
-      <input name="subj" id="subj"><br>
-      <label for="comment">Comment</label><br>
-      <input name="comment" id="comment"><br>
+      <label for="reas">Reason</label><br>
+      <input name="reas" id="reas"><br>
+      <label for="expl">Explaining</label><br>
+      <input name="expl" id="expl"><br>
+      <label for="add">Addition</label><br>
+      <input name="add" id="add"><br>
+      <label for="comm">Comment</label><br>
+      <input name="comm" id="comm"><br>
     </div>
 
     <div>

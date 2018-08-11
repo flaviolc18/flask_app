@@ -26,7 +26,7 @@ def new():
 
     #create the models
     rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'], comment=data['comment'])
-    ad = Ad(company=data['comp'], service=data['serv'], subject=data['subj'])
+    ad = Ad(company=data['comp'], service=data['serv'])
     
     #set the relationship
     ad.rate = rate
@@ -39,7 +39,9 @@ def new():
 
     return redirect(url_for('ads.index'))
   else:
-    return render_template('new_ad.html')
+    threeRate = {"1":"not at all", "2":"somewhat", "3":"very"}
+    fiveRate = {"1":"definitely should not see", "2":"maybe should not see", "3":"not sure if people should or should not see", "4":"maybe should see", "5":"definitely should see"}
+    return render_template('new_ad.html', threeRate=threeRate, fiveRate=fiveRate)
 
 @ads_blueprint.route("/ads/show_all")
 def show_all():

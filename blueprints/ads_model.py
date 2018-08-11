@@ -16,7 +16,6 @@ class Ad(db.Model):
     "id": self.id,
     "company": self.company,
     "service": self.service,
-    "subject": self.subject,
     "rate_id": self.rate_id,
     "rate": self.rate.serialize()
     }

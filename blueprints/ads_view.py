@@ -33,7 +33,7 @@ def new():
     data = request.form.to_dict()
 
     #create the models
-    rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'], comment=data['comment'])
+    rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'], overall=data['over'],  comment=data['comm'], reason=data['reas'], explaining=data['expl'], addition=data['add'])
     ad = Ad(company=data['comp'], service=data['serv'])
     
     #set the relationship

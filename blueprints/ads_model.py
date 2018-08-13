@@ -26,10 +26,10 @@ class Rate(db.Model):
   __tablename__ = 'rates'
 
   id = db.Column(db.Integer, primary_key=True)
-  offensive = db.Column(db.String(20))
-  misleading = db.Column(db.String(20))
-  inappropriate = db.Column(db.String(20))
-  overall = db.Column(db.String(20))
+  offensive = db.Column(db.String(5))
+  misleading = db.Column(db.String(5))
+  inappropriate = db.Column(db.String(5))
+  overall = db.Column(db.String(5))
   reason = db.Column(db.String(500))
   explaining = db.Column(db.String(500))
   addition = db.Column(db.String(500))

@@ -48,36 +48,55 @@ $(function(){
   duration = [];
   i=0;
 
-  $("#reas").keydown(function(){
+  $("#reas, #expl, #add").keypress(function(){
 
     try{
       time.push($.now());
       duration.push(time[time.length - 1] - time[time.length - 2]);
-      console.log(time);
-      console.log(duration);
     }catch{
       
     }
-  }).keyup(function(){
 
     if(duration[i] > 300){
-      //make the request to get the comment and translate it
-      //ao fazer a requisicao zerar as pilhas e o i
+      
       time = [];
       duration = [];
       i=0;
-      alert("working");
+
+      attCommField();
+      translate();
+
     }else{
       i++;
     }
+  }).focusout(function(){
+
+    attCommField();
+    translate();
   });
 
-  $("#expl").keydown(function(){
-    alert("test");
-  });
-
-  $("#add").keydown(function(){
-    
-  });
-  
 });
+
+function attCommField(){
+  $("#comm").val($("#reas").val() +" "+ $("#expl").val() +" "+ $("#add").val());
+}
+
+function translate(){
+  $.ajax({
+    url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
+    type: "POST",
+    data: {
+      "key":"trnsl.1.1.20180811T235235Z.208a03afda2184fc.78e1084fc806716fcd4018dac14ee49532074e2e",
+      "text": $("#comm").val(),
+      "lang": "en-pt",
+      "format":"plain"
+    },
+    timeout: 12000,
+    dataType: "json",
+    success: function(data){
+      $("#trans").val(data['text']);
+    }
+  });
+}
+
+

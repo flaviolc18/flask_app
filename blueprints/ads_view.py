@@ -10,16 +10,22 @@ ads_blueprint = Blueprint('ads', __name__, template_folder='templates')
 threeRate = {"1":"not at all", "2":"somewhat", "3":"very"}
 fiveRate = {"1":"definitely should not see", "2":"maybe should not see", "3":"not sure if people should or should not see", "4":"maybe should see", "5":"definitely should see"}
 
+@ads_blueprint.route("/")
+def index():
+  return render_template('index.html')
+
 @ads_blueprint.route("/ads", methods=["POST", "GET"])
 def handler():
   if(request.method == "POST"):
 
     if("num_ads" in request.form):
-      session['num_ads'] = request.form['num_ads']
+      session['num_ads'] = int(request.form['num_ads'])
       session['num_made_ads'] = 0
 
     return render_template('find_ads.html')
   else:
+    session.pop("num_ads")
+    session.pop("num_made_ads")
     return render_template('find_ads.html')
 
 @ads_blueprint.route("/ads/new", methods=["GET", "POST"])
@@ -85,7 +91,13 @@ def show():
       session['num_made_ads'] += 1
       session['comp'] = ""
       session['serv'] = ""
-      return redirect(url_for("ads.handler"))
+      if("num_ads" in session and "num_made_ads" in session and session['num_made_ads'] >= session['num_ads']):
+        flash("You complete today's batch! Congragulations!")
+        return redirect(url_for("ads.index"))
+
+      else:
+        return redirect(url_for("ads.handler"))
+
     else:
 
       flash("Fail send message, start the bot in the Telegram chat...")
@@ -101,9 +113,8 @@ def next():
   session['serv'] = ""
   #setar depois no login para nao ter possibilidade de acesso sem estar setada
   session['num_made_ads'] += 1
-  return redirect(url_for('ads.handler'))
-
-
-@ads_blueprint.route("/")
-def index():
-  return render_template('index.html')
+  if("num_ads" in session and "num_made_ads" in session and session['num_made_ads'] >= session['num_ads']):
+    flash("You complete today's batch! Congragulations!")
+    return redirect(url_for("ads.index"))
+  else:
+    return redirect(url_for("ads.handler"))

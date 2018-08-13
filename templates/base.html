@@ -16,6 +16,10 @@
     {% endif %}
   {% endwith %}
 
+  {% if "num_ads" in session and "num_made_ads" in session %}
+    <span>{{session['num_ads']}} / {{session['num_made_ads']}}</span>
+  {% endif %}
+
   {% block content %}
 
     <!-- include pages -->

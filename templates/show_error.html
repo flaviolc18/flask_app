@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%block content%}
+  <h2>test</h2>
+  <p>the id is: {{id_ad_selected}}</p>
+  <a href="{{ url_for('ads.handler', ad_id=id_ad_selected) }}">Back to home</a>
+  {% if try_again == "S" %}
+    <a href="{{ url_for('ads.show', ad_id=id_ad_selected) }}">Try again</a>
+  {% endif %}
+{%endblock%}

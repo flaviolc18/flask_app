@@ -33,7 +33,7 @@ def new():
     data = request.form.to_dict()
 
     #create the models
-    rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'], overall=data['over'],  comment=data['comm'], reason=data['reas'], explaining=data['expl'], addition=data['add'])
+    rate = Rate(offensive=data['offen'], misleading=data['misl'], inappropriate=data['inap'], overall=data['over'],  comment=data['comm'])
     ad = Ad(company=data['comp'], service=data['serv'])
     
     #set the relationship
@@ -41,11 +41,15 @@ def new():
 
     db.session.add(ad)
     db.session.add(rate)
+    db.session.flush()
+
+    ad_id = ad.id
+
     db.session.commit()
 
     flash("Successfully created Ad!")
 
-    return redirect(url_for('ads.index'))
+    return redirect(url_for('ads.show', ad_id=ad_id))
   else:
     return render_template('new_ad.html', threeRate=threeRate, fiveRate=fiveRate)
 
@@ -79,12 +83,16 @@ def show():
       bot.send_msg(ad.rate.comment)
       flash("Message sent successfully!")
       session['num_made_ads'] += 1
+      session['comp'] = ""
+      session['serv'] = ""
+      return redirect(url_for("ads.handler"))
     else:
-      flash("Fail send message, start the bot in the Telegram chat...")
 
-    #here I must show all ad properties
-    return render_template("show_ad.html", id_ad_selected=request.args['ad_id'])
+      flash("Fail send message, start the bot in the Telegram chat...")
+      return render_template("show_ad.html", try_again="S")
+    
   else:
+    flash("No ad ID specified")
     return render_template("show_ad.html")
 
 @ads_blueprint.route("/ads/next")

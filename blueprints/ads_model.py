@@ -26,13 +26,15 @@ class Rate(db.Model):
   __tablename__ = 'rates'
 
   id = db.Column(db.Integer, primary_key=True)
-  offensive = db.Column(db.String(5))
-  misleading = db.Column(db.String(5))
-  inappropriate = db.Column(db.String(5))
-  overall = db.Column(db.String(5))
+  offensive = db.Column(db.String(20))
+  misleading = db.Column(db.String(20))
+  inappropriate = db.Column(db.String(20))
+  overall = db.Column(db.String(20))
+  '''
   reason = db.Column(db.String(500))
   explaining = db.Column(db.String(500))
   addition = db.Column(db.String(500))
+  '''
   comment = db.Column(db.String(1000))
 
   def serialize(self):
@@ -41,9 +43,11 @@ class Rate(db.Model):
     "offensive": self.offensive,
     "misleading": self.misleading,
     "inappropriate": self.inappropriate,
-    "reason": self.reason,
     "overall": self.overall,
+    '''
+    "reason": self.reason,
     "explaining": self.explaining,
     "addition": self.addition,
+    '''
     "comment": self.comment
     }

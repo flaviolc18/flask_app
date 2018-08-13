@@ -14,25 +14,44 @@
       <div>
         <label for="offen">Offensive</label><br>
         {% for key in threeRate %}
-          <input type="radio" name="offen" id="offen" value="{{key}}">{{threeRate[key].title()}}<br>
+          {% if key == "1" %}
+            <input type="radio" name="offen" id="offen" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+          {% else %}
+            <input type="radio" name="offen" id="offen" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+          {% endif %}
         {% endfor %}
       </div>
       <div>
         <label for="misl">Misleading</label><br>
         {% for key in threeRate %}
-          <input type="radio" name="misl" id="misl" value="{{key}}">{{threeRate[key].title()}}<br>
+          {% if key == "1" %}
+            <input type="radio" name="misl" id="misl" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+          {% else %}
+            <input type="radio" name="misl" id="misl" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+          {% endif %}
+          
         {% endfor %}
       </div>
       <div>
         <label for="inap">Inappropriate</label><br>
         {% for key in threeRate %}
-          <input type="radio" name="inap" id="inap" value="{{key}}">{{threeRate[key].title()}}<br>
+          {% if key == "1" %}
+            <input type="radio" name="inap" id="inap" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+          {% else %}
+            <input type="radio" name="inap" id="inap" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+          {% endif %}
+          
         {% endfor %}
       </div>
       <div>
         <label for="over">Overall</label><br>
         {% for key in fiveRate %}
-          <input type="radio" name="over" id="over" value="{{key}}">{{fiveRate[key].title()}}<br>
+          {% if key == "3" %}
+            <input type="radio" name="over" id="over" checked="checked" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
+          {% else %}
+            <input type="radio" name="over" id="over" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
+          {% endif %}
+
         {% endfor %}
       </div>
     </div>
@@ -47,10 +66,6 @@
       <textarea name="comm" id="comm"></textarea><br>
       <label for="trans">Translation</label><br>
       <textarea name="trans" id="trans"></textarea><br>
-    </div>
-
-    <div>
-      <!-- ad preview with translation -->
     </div>
 
     <input type="submit" value="Create" />

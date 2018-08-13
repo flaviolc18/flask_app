@@ -43,42 +43,53 @@ $(function(){
     e.preventDefault();
     
   });
-  
-  time = [];
-  duration = [];
-  i=0;
 
-  $("#reas, #expl, #add").keypress(function(){
+  var timer;
+  var interval = 400;
 
-    try{
-      time.push($.now());
-      duration.push(time[time.length - 1] - time[time.length - 2]);
-    }catch{
-      
-    }
+  $("#comp, #serv, #subj, #reas, #expl, #add").keydown(function(){
 
-    if(duration[i] > 300){
-      
-      time = [];
-      duration = [];
-      i=0;
+    clearTimeout(timer);
 
-      attCommField();
-      translate();
+  }).keyup(function(){
 
-    }else{
-      i++;
-    }
+    clearTimeout(timer);
+    timer = setTimeout(attCommField, interval);
   }).focusout(function(){
 
     attCommField();
-    translate();
+  });
+
+  $('input[type=radio][name=over]').change(function() {
+    attCommField();
   });
 
 });
 
 function attCommField(){
-  $("#comm").val($("#reas").val() +" "+ $("#expl").val() +" "+ $("#add").val());
+
+  s = [];
+
+  s[0] = "People " + $("input[name=over]:checked").val() + " this ad from '" + $("#comp").val() + " about " + $("#serv").val() + " because " + $("#reas").val() + ". ";
+  s[1] = "I am " + $("input[name=over]:checked").val() + " this ad from '" + $("#comp").val() + "' about " + $("#serv").val() + " because " + $("#reas").val() + ". ";
+
+  if($("input[name=over]:checked").val() == "not sure if people should or should not see"){
+    i=1;
+  }else{
+    i=0;
+  }
+
+  if($("#expl").val().trim() != ""){
+    s[i] += $("#expl").val() + ". ";
+  }
+
+  if($("#add").val().trim() != ""){
+    s[i] += "Also, " + $("#add").val() + ".";
+  }
+
+  $("#comm").val( s[i] );
+
+  translate();
 }
 
 function translate(){

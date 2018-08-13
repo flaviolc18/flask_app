@@ -44,4 +44,40 @@ $(function(){
     
   });
   
+  time = [];
+  duration = [];
+  i=0;
+
+  $("#reas").keydown(function(){
+
+    try{
+      time.push($.now());
+      duration.push(time[time.length - 1] - time[time.length - 2]);
+      console.log(time);
+      console.log(duration);
+    }catch{
+      
+    }
+  }).keyup(function(){
+
+    if(duration[i] > 300){
+      //make the request to get the comment and translate it
+      //ao fazer a requisicao zerar as pilhas e o i
+      time = [];
+      duration = [];
+      i=0;
+      alert("working");
+    }else{
+      i++;
+    }
+  });
+
+  $("#expl").keydown(function(){
+    alert("test");
+  });
+
+  $("#add").keydown(function(){
+    
+  });
+  
 });

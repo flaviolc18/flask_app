@@ -6,6 +6,10 @@ from bot.bot import Bot
 #create a blueprint
 ads_blueprint = Blueprint('ads', __name__, template_folder='templates')
 
+#mapping
+threeRate = {"1":"not at all", "2":"somewhat", "3":"very"}
+fiveRate = {"1":"definitely should not see", "2":"maybe should not see", "3":"not sure if people should or should not see", "4":"maybe should see", "5":"definitely should see"}
+
 @ads_blueprint.route("/ads", methods=["POST", "GET"])
 def handler():
   if(request.method == "POST"):
@@ -20,6 +24,10 @@ def handler():
 
 @ads_blueprint.route("/ads/new", methods=["GET", "POST"])
 def new():
+
+  global threeRate
+  global fiveRate
+
   if request.method == "POST":
 
     data = request.form.to_dict()
@@ -39,8 +47,6 @@ def new():
 
     return redirect(url_for('ads.index'))
   else:
-    threeRate = {"1":"not at all", "2":"somewhat", "3":"very"}
-    fiveRate = {"1":"definitely should not see", "2":"maybe should not see", "3":"not sure if people should or should not see", "4":"maybe should see", "5":"definitely should see"}
     return render_template('new_ad.html', threeRate=threeRate, fiveRate=fiveRate)
 
 @ads_blueprint.route("/ads/show_all")

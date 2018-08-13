@@ -1,0 +1,43 @@
+h1, h2, h3, h4, body {
+  font-family: 'Open Sans', 'sans-serif';
+}
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {
+  color: white;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-brand:hover {
+  color: white;
+  opacity: 0.75;
+}
+.navbar {
+  border: none;
+}
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 1000;
+}
+.navbar-default .navbar-toggle {
+  border: solid 1.5px white;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #00c6ff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+.home-collout, .navbar {
+  background: #56ccf2;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.home-collout {
+  margin-top: -20px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  color: white;
+}
+.alert-notice {
+  display: none;
+}

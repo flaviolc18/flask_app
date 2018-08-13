@@ -1,8 +1,15 @@
 {% extends "base.html" %}
-{% block content %}
+
+{% block page_name %}Index{% endblock %}
+
+{% block page_content %}
+
+<div class="home-collout text-center container-fluid">
+  <h3>Welcome to the funny time of work!</h3>
+  <h4>A dream doesn't become reality through magic; it takes sweat, determination and hard work.</h4>
+</div>
+
   
-  <h3>WorkTool v1.0</h3> 
-  <h4>Welcome to the funny time of work!</h4>
 
   <form id="form_num_ads" method="POST" action="{{ url_for('ads.handler') }}">
     <select name="num_ads" id="num_ads">

@@ -1,8 +1,11 @@
 import os
 from flask import Flask
 from blueprints.ads_view import ads_blueprint
-from db import db
+from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
+from flask_scss import Scss
+from db import db
+
 
 
 def create_app():
@@ -18,6 +21,10 @@ def create_app():
 
   db.init_app(app)
   Migrate(app, db)
+
+  Bootstrap(app)
+
+  Scss(app, static_dir='static', asset_dir='assets/scss/')
 
   @app.before_first_request
   def create_tables():

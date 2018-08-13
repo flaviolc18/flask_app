@@ -1,30 +1,69 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{% block title %} {{title or "Work App v1.0"}} {% endblock %}</title>
-  <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
-  <script type=text/javascript src="{{ url_for('static', filename='main.js') }}"></script>
-</head>
-<body>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class='flashes'>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
+{% extends "bootstrap/base.html" %}
+  {% block title %}{% block page_name %}{% endblock %} - Work App v1.0{% endblock %}
 
-  {% if "num_ads" in session and "num_made_ads" in session and session['num_ads'] > session['num_made_ads'] %}
-    <span>{{session['num_made_ads']}} / {{session['num_ads']}}</span>
-  {% endif %}
+  {% block head %}
+    {{super()}}
+    
 
-  {% block content %}
+    {% block scripts %}
+      {{super()}}
+      <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+    {% endblock %}
 
-    <!-- include pages -->
+    {% block styles %}
+      {{super()}}
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='custom.css') }}">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+    {% endblock %}
 
   {% endblock %}
 
-</body>
-</html>
+  {% block navbar %}
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{{ url_for('ads.index') }}" class="navbar-brand">
+            <i class="fa fa-group"></i>
+            WorkTool
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="nav navbar-nav navbar-right">
+
+            <!-- add log in and log out buttons here-->
+
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a>test</a></li>
+            <li><a>test</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+
+  {% block content %}
+
+    {% import "bootstrap/utils.html" as utils %}
+    {%- with messages = get_flashed_messages(with_categories=True) %}
+      {%- if messages %}
+        <div class="row">
+          <div class="col-md-12">
+            {{utils.flashed_messages(messages)}}
+          </div>
+        </div>
+      {%- endif %}
+    {%- endwith %}
+
+      {% block page_content %}{% endblock %}
+
+  {% endblock %}

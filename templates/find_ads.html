@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
-{% block content %}
+
+{% block page_name %}Find Ads{% endblock %}
+
+{% block page_content %}
+
+  {% if "num_ads" in session and "num_made_ads" in session and session['num_ads'] > session['num_made_ads'] %}
+    <span>{{session['num_made_ads']}} / {{session['num_ads']}}</span>
+  {% endif %}
 
   <form id="form_search_ads" method="POST" action="" enctype="multipart/form-data">
 

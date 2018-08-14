@@ -24,8 +24,6 @@ def handler():
 
     return render_template('find_ads.html')
   else:
-    session.pop("num_ads")
-    session.pop("num_made_ads")
     return render_template('find_ads.html')
 
 @ads_blueprint.route("/ads/new", methods=["GET", "POST"])

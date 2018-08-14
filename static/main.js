@@ -60,6 +60,19 @@ $(function(){
     attCommField();
   });
 
+  $("#comm").keydown(function(){
+
+    clearTimeout(timer);
+
+  }).keyup(function(){
+
+    clearTimeout(timer);
+    timer = setTimeout(translate, interval);
+  }).focusout(function(){
+
+    translate();
+  });
+
   $('input[type=radio][name=over]').change(function() {
     attCommField();
   });
@@ -70,7 +83,7 @@ function attCommField(){
 
   s = [];
 
-  s[0] = "People " + $("input[name=over]:checked").val() + " this ad from '" + $("#comp").val() + " about " + $("#serv").val() + " because " + $("#reas").val() + ". ";
+  s[0] = "People " + $("input[name=over]:checked").val() + " this ad from '" + $("#comp").val() + "' about " + $("#serv").val() + " because " + $("#reas").val() + ". ";
   s[1] = "I am " + $("input[name=over]:checked").val() + " this ad from '" + $("#comp").val() + "' about " + $("#serv").val() + " because " + $("#reas").val() + ". ";
 
   if($("input[name=over]:checked").val() == "not sure if people should or should not see"){

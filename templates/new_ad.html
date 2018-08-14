@@ -4,80 +4,140 @@
 
 {% block page_content %}
 
-  {% if "num_ads" in session and "num_made_ads" in session and session['num_ads'] > session['num_made_ads'] %}
-    <span>{{session['num_made_ads']}} / {{session['num_ads']}}</span>
-  {% endif %}
+<div class="container-fluid">
 
-  <form method="POST" action="" enctype="multipart/form-data">
-
-    <div >
-      <label for="comp">Company</label><br>
-      <input name="comp" id="comp" value="{{ session['comp'] }}"><br>
-
-      <label for="serv">Service</label><br>
-      <input name="serv" id="serv" value="{{ session['serv'] }}"><br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+     <h3>Create a new Ad</h3> 
     </div>
-    <div>
-      <div>
-        <label for="offen">Offensive</label><br>
-        {% for key in threeRate %}
-          {% if key == "1" %}
-            <input type="radio" name="offen" id="offen" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
-          {% else %}
-            <input type="radio" name="offen" id="offen" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
-          {% endif %}
-        {% endfor %}
-      </div>
-      <div>
-        <label for="misl">Misleading</label><br>
-        {% for key in threeRate %}
-          {% if key == "1" %}
-            <input type="radio" name="misl" id="misl" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
-          {% else %}
-            <input type="radio" name="misl" id="misl" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
-          {% endif %}
-          
-        {% endfor %}
-      </div>
-      <div>
-        <label for="inap">Inappropriate</label><br>
-        {% for key in threeRate %}
-          {% if key == "1" %}
-            <input type="radio" name="inap" id="inap" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
-          {% else %}
-            <input type="radio" name="inap" id="inap" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
-          {% endif %}
-          
-        {% endfor %}
-      </div>
-      <div>
-        <label for="over">Overall</label><br>
-        {% for key in fiveRate %}
-          {% if key == "3" %}
-            <input type="radio" name="over" id="over" checked="checked" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
-          {% else %}
-            <input type="radio" name="over" id="over" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
-          {% endif %}
+  </div>
 
-        {% endfor %}
+  <div class="row">
+    {% if "num_ads" in session and "num_made_ads" in session and session['num_ads'] > session['num_made_ads'] %}
+      <div class="pull-right" style="margin-right:15px">
+        <span>{{session['num_made_ads']}} / {{session['num_ads']}}</span>
+      </div>
+    {% endif %}
+  </div>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+
+    <div class="form-group row">
+      <div class="col-md-4 col-md-offset-2">
+        <label for="comp">Company</label><br>
+        <input name="comp" class="form-control" id="comp" value="{{ session['comp'] }}"><br>
+      </div>
+      <div class="col-md-4">
+        <label for="serv">Service</label><br>
+        <input name="serv" class="form-control" id="serv" value="{{ session['serv'] }}"><br>
       </div>
     </div>
-    <div>
-      <label for="reas">Reason</label><br>
-      <input name="reas" id="reas"><br>
-      <label for="expl">Explaining</label><br>
-      <input name="expl" id="expl"><br>
-      <label for="add">Addition</label><br>
-      <input name="add" id="add"><br>
-      <label for="comm">Comment</label><br>
-      <textarea name="comm" id="comm"></textarea><br>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <div class="col-md-6 col-md-offset-3 well">
+          <div class="col-md-12 text-center">
+            <label for="offen">Offensive</label><br>
+          </div>
+          {% for key in threeRate %}
+            {% if key == "1" %}
+              <input type="radio" name="offen" id="offen" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+            {% else %}
+              <input type="radio" name="offen" id="offen" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <div class="col-md-6 col-md-offset-3 well">
+          <div class="col-md-12 text-center">
+            <label for="misl">Misleading</label><br>
+          </div>
+          {% for key in threeRate %}
+            {% if key == "1" %}
+              <input type="radio" name="misl" id="misl" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+            {% else %}
+              <input type="radio" name="misl" id="misl" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+            {% endif %}
+            
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <div class="col-md-6 col-md-offset-3 well">
+          <div class="col-md-12 text-center">
+            <label for="inap">Inappropriate</label><br>
+          </div>
+          {% for key in threeRate %}
+            {% if key == "1" %}
+              <input type="radio" name="inap" id="inap" checked="checked" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+            {% else %}
+              <input type="radio" name="inap" id="inap" value="{{threeRate[key]}}">{{threeRate[key].title()}}<br>
+            {% endif %}
+            
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <div class="col-md-10 col-md-offset-1 well">
+          <div class="col-md-12 text-center">
+            <label for="over">Overall</label><br>
+          </div>
+          <div class="col-md-offset-1">
+            {% for key in fiveRate %}
+              {% if key == "3" %}
+                <div class="col-md-4">
+                  <input type="radio" name="over" id="over" checked="checked" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
+                </div>
+              {% elif key == "1" or key == "4" %}
+                <div class="col-md-4">
+                  <input type="radio" name="over" id="over" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
+              {% elif key == "2" or key == "5" %}
+                  <input type="radio" name="over" id="over" value="{{fiveRate[key]}}">{{fiveRate[key].title()}}<br>
+                </div>
+              {% endif %}
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="reas">Reason</label><br>
+        <input name="reas" class="form-control" id="reas"><br>
+      </div>
+      <div class="col-md-4">
+        <label for="expl">Explaining</label><br>
+        <input name="expl" class="form-control" id="expl"><br>
+      </div>
+      <div class="col-md-4">
+        <label for="add">Addition</label><br>
+        <input name="add" class="form-control" id="add"><br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <label for="comm">Comment</label><br>
+        <textarea name="comm" rows="5" class="form-control rounded-0" id="comm"></textarea><br>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1">
       <label for="trans">Translation</label><br>
-      <textarea name="trans" id="trans"></textarea><br>
+      <textarea name="trans" rows="5" class="form-control rounded-0" id="trans"></textarea><br>
+    </div>
     </div>
 
-    <input type="submit" value="Create" />
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <input type="submit" class="btn btn-default" value="Create"><br>
+        <a href="{{url_for('ads.next')}}">Next</a>
+      </div>
+    </div>
   </form>
-
-  <a href="{{url_for('ads.next')}}">Next</a>
+</div>
   
 {% endblock %}

@@ -99,7 +99,7 @@ def show():
     else:
 
       flash("Fail send message, start the bot in the Telegram chat...")
-      return render_template("show_error.html", try_again="S")
+      return render_template("show_error.html", try_again="S", id_ad_selected=request.args['ad_id'])
     
   else:
     flash("No ad ID specified")

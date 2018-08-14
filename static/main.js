@@ -10,31 +10,31 @@ $(function(){
       timeout: 12000,
       dataType: "json",
       success: function(data){
-        html = "<table>";
-
+        html = "<div class='col-md-12 text-center'><h3>Search results:</h3></div>";
         //for each add
         for(var i=0; i<data.length; i++){
 
-          html += "<tr><td><input type='radio' name='ad_id' value='"+data[i].id+"'></td>";
+          if(i%4 == 0){
+            html += '<div class="row row-eq-height">';
+          }
 
-            Object.keys(data[i]).forEach(function(key){
+          html += 
+          '<div class="col-md-3">'+
+            '<ul class="list-group ads-list">'+
+              '<li class="list-group-item active ads-list-title text-center">'+data[i].company+'</li>'+
+             '<li class="list-group-item"><b>Offensive:</b> '+data[i].rate.offensive+'</li>'+
+              '<li class="list-group-item"><b>Misleading:</b> '+data[i].rate.misleading+'</li>'+
+              '<li class="list-group-item"><b>Inappropriate:</b> '+data[i].rate.inappropriate+'</li>'+
+              '<li class="list-group-item"><b>Overall:</b> '+data[i].rate.overall+'</li>'+
+              '<li class="list-group-item comment-item"><b>Comment:</b> '+data[i].rate.comment+'</li>'+
+              '<li class="list-group-item text-center"><a class="btn btn-default" href="/ads/show?ad_id='+data[i].id+'">Select</a></li>'+
+            '</ul>'+
+          '</div>';
 
-              if(typeof(data[i][key]) == "object"){
-                Object.keys(data[i][key]).forEach(function(key2){
-
-                  html += "<td>"+ key2 +":"+ data[i][key][key2] +"</td>";
-                });
-              }else{
-
-                html += "<td>"+ key +":"+ data[i][key] +"</td>";
-              }
-            });
-
-          html +="</tr>";
+          if(i%4 == 3){
+            html += '</div>';
+          }
         }
-
-        html += "</table>";
-        if(data.length > 0){html += '<input type="submit" value="Select Ad">';}
 
         $("div.div-search-content").html(html);
       }

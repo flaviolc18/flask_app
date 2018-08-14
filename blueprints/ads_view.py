@@ -99,11 +99,11 @@ def show():
     else:
 
       flash("Fail send message, start the bot in the Telegram chat...")
-      return render_template("show_ad.html", try_again="S")
+      return render_template("show_error.html", try_again="S")
     
   else:
     flash("No ad ID specified")
-    return render_template("show_ad.html")
+    return render_template("show_error.html")
 
 @ads_blueprint.route("/ads/next")
 def next():

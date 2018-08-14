@@ -41,3 +41,6 @@ h1, h2, h3, h4, body {
 .alert-notice {
   display: none;
 }
+.margin-50 {
+    margin: 50px;
+}

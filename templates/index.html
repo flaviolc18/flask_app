@@ -9,19 +9,25 @@
   <h4>A dream doesn't become reality through magic; it takes sweat, determination and hard work.</h4>
 </div>
 
-  
-
-  <form id="form_num_ads" method="POST" action="{{ url_for('ads.handler') }}">
-    <select name="num_ads" id="num_ads">
-      {% for i in range(20) %}
-        {% if i+1 == 20 %}
-          <option value="{{i+1}}" selected="selected">{{i+1}}</option>
-        {% else %}
-          <option value="{{i+1}}">{{i+1}}</option>
-        {% endif %}
-      {% endfor %}
-    </select>
-    <input type="submit" value="New batch">
-  </form>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <form id="form_num_ads" method="POST" style="margin-top:50px;" action="{{ url_for('ads.handler') }}">
+        <div class="form-group text-center">
+          <label for="num_ads" >How many work we have for today?</label>
+          <select class="form-control text-center" name="num_ads" id="num_ads">
+            {% for i in range(20) %}
+              {% if i+1 == 20 %}
+                <option value="{{i+1}}" selected="selected">{{i+1}}</option>
+              {% else %}
+                <option value="{{i+1}}">{{i+1}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <input style="margin-top:50px;" type="submit" class="btn btn-default center-block" value="Start batch">
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

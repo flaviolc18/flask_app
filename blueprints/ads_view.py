@@ -61,7 +61,11 @@ def new():
 def show_all():
   if(request.args.get('option') == "get_ads"):
 
-    all_ads = Ad.query.filter(Ad.company.like("%"+request.args.get('comp')+"%"), Ad.service.like("%"+request.args.get('serv')+"%"), Rate.comment.like("%"+request.args.get('key')+"%")).all()
+    comp = request.args.get('comp')
+    serv = request.args.get('serv')
+    key = request.args.get('key')
+
+    all_ads = Ad.query.filter(Ad.company.like("%"+comp+"%"), Ad.service.like("%"+serv+"%"), Ad.rate.has(Rate.comment.like("%"+key+"%"))).all()
 
     session["comp"] = request.args.get('comp')
     session["serv"] = request.args.get('serv')
@@ -81,6 +85,10 @@ def show():
 
     ad = Ad.query.filter_by(id=request.args['ad_id']).first()
 
+    if not ad:
+      flash("This is not a valid ID.")
+      return render_template("show_error.html")
+
     bot = Bot()
     if(bot.get_ready()):
 
@@ -99,7 +107,7 @@ def show():
     else:
 
       flash("Fail send message, start the bot in the Telegram chat...")
-      return render_template("show_error.html", try_again="S", id_ad_selected=request.args['ad_id'])
+      return render_template("show_error.html")
     
   else:
     flash("No ad ID specified")

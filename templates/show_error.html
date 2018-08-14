@@ -3,10 +3,19 @@
 {% block page_name %}Error{% endblock %}
 
 {% block page_content %}
-  <h2>test</h2>
-  <p>the id is: {{id_ad_selected}}</p>
-  <a href="{{ url_for('ads.handler', ad_id=id_ad_selected) }}">Back to home</a>
-  {% if try_again == "S" %}
-    <a href="{{ url_for('ads.show', ad_id=id_ad_selected) }}">Try again</a>
-  {% endif %}
+
+<div class="container-fluid">
+  <div class="row">
+    {% if "num_ads" in session and "num_made_ads" in session and session['num_ads'] > session['num_made_ads'] %}
+      <div class="pull-right" style="margin-right:15px">
+        <span>{{session['num_made_ads']}} / {{session['num_ads']}}</span>
+      </div>
+    {% endif %}
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <h2>We found an error in your request...</h2>
+      <a class="btn btn-info" style="margin-top:20px;" href="{{ url_for('ads.handler') }}">Find another Ad</a><br>
+    </div>
+  </div>
+</div>
+
 {%endblock%}

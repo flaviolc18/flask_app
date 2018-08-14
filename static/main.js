@@ -1,4 +1,4 @@
-$(function(){
+
 
   $("#form_search_ads").submit(function(e){
 
@@ -77,7 +77,6 @@ $(function(){
     attCommField();
   });
 
-});
 
 function attCommField(){
 

@@ -18,7 +18,7 @@
             html += '<div class="row row-eq-height">';
           }
 
-          html += 
+          html +=
           '<div class="col-md-3">'+
             '<ul class="list-group ads-list">'+
               '<li class="list-group-item active ads-list-title text-center">'+data[i].company+'</li>'+
@@ -41,7 +41,7 @@
     });
 
     e.preventDefault();
-    
+
   });
 
   var timer;
@@ -76,6 +76,17 @@
   $('input[type=radio][name=over]').change(function() {
     attCommField();
   });
+
+  function copyToClipboard() {
+    /* Get the text field */
+    var copyText = document.getElementById("comm");
+
+    /* Select the text field */
+    copyText.select();
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+  }
 
 
 function attCommField(){
@@ -121,5 +132,3 @@ function translate(){
     }
   });
 }
-
-
